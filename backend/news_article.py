@@ -38,15 +38,18 @@ Data Loading
 '''
 async def insert_data(filtered_data):
     for data in filtered_data:
-        await news_article_collection.update_one( 
-                {
-                    '_id': data['_id']
-                },
-                {
-                    '$set': data
-                }, 
-                upsert=True
-            )
+        if data==[]:
+            print('Error')
+        else:
+            await news_article_collection.update_one( 
+                    {
+                        '_id': data['_id']
+                    },
+                    {
+                        '$set': data
+                    }, 
+                    upsert=True
+                )
     
 async def main():
     await insert_data(filtered_data)
