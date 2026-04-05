@@ -9,6 +9,9 @@ def get_finance_data(ticker):
     '''
     df=yf.Ticker(ticker).history(period='1d')
     
+    if df.empty:
+        return []
+    
     '''
     Data Tranformation
     '''
@@ -70,15 +73,18 @@ Data Loading
 '''
 async def insert_data(filtered_data):
     for data in filtered_data:
-        await stocks_collection.update_one( 
-            {
-                '_id': data[0]['_id']
-            },
-            {
-                '$set': data[0]
-            }, 
-            upsert=True
-        )
+        if data==[]:
+            print('Error')
+        else:
+            await stocks_collection.update_one( 
+                {
+                    '_id': data[0]['_id']
+                },
+                {
+                    '$set': data[0]
+                }, 
+                upsert=True
+            )
     
 async def main():
     await insert_data(final_data)
