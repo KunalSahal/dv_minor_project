@@ -1,0 +1,31 @@
+# 1. Security (CRITICAL)
+.env
+*.pem
+*.key
+
+# 2. Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 3. Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# 4. Data & Logs (Preventing massive GitHub uploads)
+*.csv
+*.log
+*.sqlite3
+
+# 5. Hugging Face / Machine Learning Caches
+.huggingface/
+.cache/
+
+# 6. IDEs & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
