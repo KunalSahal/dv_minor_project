@@ -26,15 +26,14 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r backend/requirements.txt
 
-      # 4. The Execution & Secret Injection
       - name: Execute News ETL
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
-        run: python news_article.py
+        run: python backend/news_article.py
 
       - name: Execute Stock ETL
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
-        run: python stock.py
+        run: python backend/stock.py
